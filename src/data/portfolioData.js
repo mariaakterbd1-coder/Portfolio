@@ -30,10 +30,7 @@ export const personalInfo = {
     "I'm a Computer Science and Engineering student at Daffodil International University, passionate about programming, problem-solving, and exploring new technologies.",
 
   // Profile Picture Path:
-  // Option 1: Put your image inside the `public/` folder (e.g., `public/profile.jpg`) and set:
-  // profileImage: "/profile.jpg",
-  // Option 2: Keep it as null to use the modern stylized avatar placeholder.
-  profileImage: null,
+  profileImage: "/maria-akter.jpg",
 
   // About Me section detailed introduction
   aboutMe: {
