@@ -117,7 +117,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="p-2 rounded-xl bg-white/[0.05] border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              className="w-11 h-11 rounded-xl bg-white/[0.05] border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 active:scale-95 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-purple-500/50"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
             >
@@ -129,7 +129,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isOpen && (
-        <div className="md:hidden px-4 pt-3 pb-6 bg-[#090a0f]/95 backdrop-blur-xl border-b border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden px-4 pt-3 pb-6 bg-[#090a0f]/98 backdrop-blur-2xl border-b border-white/10 shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
           <div className="flex flex-col space-y-2">
             {navigationLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
@@ -138,7 +138,7 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all ${
+                  className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all active:scale-[0.99] ${
                     isActive
                       ? 'bg-purple-600/15 text-purple-300 border border-purple-500/30'
                       : 'text-slate-300 hover:bg-white/[0.05] hover:text-white'
@@ -153,7 +153,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, '#contact')}
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 shadow-md shadow-purple-900/30"
+                className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 shadow-md shadow-purple-900/30 active:scale-[0.99]"
               >
                 <span>Get in Touch</span>
                 <ArrowUpRight className="w-4 h-4" />
