@@ -82,11 +82,11 @@ Open [`src/data/portfolioData.js`](./src/data/portfolioData.js) and update `cont
 export const contactInfo = {
   heading: "Let's Connect!",
   subheading: "...",
-  email: "maria.cse@example.com",           // Your real email
-  whatsappNumber: "+880 1XXX-XXXXXX",        // Your WhatsApp number
-  whatsappUrl: "https://wa.me/8801XXXXXXXXX",// WhatsApp chat link
-  linkedinUrl: "https://www.linkedin.com/in/maria-akter", // Your LinkedIn URL
-  githubUrl: "https://github.com/maria-akter", // Your GitHub profile
+  email: "mariaakterbd1@gmail.com",
+  whatsappNumber: "+8801725442000",
+  whatsappUrl: "https://wa.me/8801725442000",
+  linkedinUrl: "https://www.linkedin.com/in/maria-akter-15616541b/",
+  githubUrl: "https://github.com/mariaakterbd1-coder",
   location: "Dhaka, Bangladesh"
 };
 ```

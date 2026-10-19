@@ -145,17 +145,11 @@ export const contactInfo = {
   heading: "Let's Connect!",
   subheading: "Whether you want to discuss a project, share programming advice, or simply connect, my inbox is always open.",
   
-  // Replace with your real email address
-  email: "maria.cse@example.com",
-  
-  // Replace with your real WhatsApp number or WhatsApp direct link
-  whatsappNumber: "+880 1XXX-XXXXXX",
-  whatsappUrl: "https://wa.me/8801XXXXXXXXX",
-  
-  // Replace with your LinkedIn profile URL
-  linkedinUrl: "https://www.linkedin.com/in/maria-akter",
-  
-  // Replace with your GitHub profile URL
+  // Real contact details
+  email: "mariaakterbd1@gmail.com",
+  whatsappNumber: "+8801725442000",
+  whatsappUrl: "https://wa.me/8801725442000",
+  linkedinUrl: "https://www.linkedin.com/in/maria-akter-15616541b/",
   githubUrl: "https://github.com/mariaakterbd1-coder",
 
   // Location details

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Send, Copy, Check, ExternalLink, Sparkles, MapPin } from 'lucide-react';
+import { Mail, Send, Copy, Check, ExternalLink, Sparkles, MapPin, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, WhatsappIcon } from './SocialIcons';
-import { contactInfo, personalInfo } from '../data/portfolioData';
+import { contactInfo } from '../data/portfolioData';
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -34,44 +34,48 @@ export default function Contact() {
   const contactCards = [
     {
       id: 'email',
-      title: 'Email',
+      title: 'Email Address',
       value: contactInfo.email,
       href: `mailto:${contactInfo.email}`,
+      isExternal: false,
       icon: Mail,
-      accent: 'from-purple-500/20 to-indigo-500/20',
-      borderAccent: 'hover:border-purple-500/40',
-      actionLabel: 'Send an Email',
+      accent: 'from-purple-500/20 to-indigo-500/20 text-purple-300',
+      borderAccent: 'hover:border-purple-500/50 hover:shadow-purple-500/10',
+      actionLabel: 'Open default email app to write an email',
       canCopy: true
     },
     {
       id: 'whatsapp',
-      title: 'WhatsApp',
+      title: 'Phone / WhatsApp',
       value: contactInfo.whatsappNumber,
       href: contactInfo.whatsappUrl,
+      isExternal: true,
       icon: WhatsappIcon,
-      accent: 'from-emerald-500/20 to-teal-500/20',
-      borderAccent: 'hover:border-emerald-500/40',
-      actionLabel: 'Chat on WhatsApp'
+      accent: 'from-emerald-500/20 to-teal-500/20 text-emerald-300',
+      borderAccent: 'hover:border-emerald-500/50 hover:shadow-emerald-500/10',
+      actionLabel: 'Open WhatsApp conversation with 8801725442000'
     },
     {
       id: 'linkedin',
       title: 'LinkedIn',
-      value: 'Connect on LinkedIn',
+      value: 'maria-akter-15616541b',
       href: contactInfo.linkedinUrl,
+      isExternal: true,
       icon: LinkedinIcon,
-      accent: 'from-blue-500/20 to-cyan-500/20',
-      borderAccent: 'hover:border-blue-500/40',
-      actionLabel: 'View Profile'
+      accent: 'from-blue-500/20 to-cyan-500/20 text-blue-300',
+      borderAccent: 'hover:border-blue-500/50 hover:shadow-blue-500/10',
+      actionLabel: 'Open LinkedIn profile in a new tab'
     },
     {
       id: 'github',
       title: 'GitHub',
-      value: 'Follow & View Repos',
+      value: 'mariaakterbd1-coder',
       href: contactInfo.githubUrl,
+      isExternal: true,
       icon: GithubIcon,
-      accent: 'from-slate-500/20 to-purple-500/20',
-      borderAccent: 'hover:border-purple-500/40',
-      actionLabel: 'View GitHub'
+      accent: 'from-slate-500/20 to-purple-500/20 text-slate-200',
+      borderAccent: 'hover:border-purple-500/50 hover:shadow-purple-500/10',
+      actionLabel: 'Open GitHub profile in a new tab'
     }
   ];
 
@@ -107,35 +111,44 @@ export default function Contact() {
               </p>
             </div>
 
+            {/* Fully Clickable Contact Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {contactCards.map((card) => {
                 const Icon = card.icon;
                 return (
-                  <div
+                  <a
                     key={card.id}
-                    className={`rounded-2xl p-5 bg-[#0d0f17]/90 border border-white/10 ${card.borderAccent} transition-all duration-300 shadow-lg group`}
+                    href={card.href}
+                    target={card.isExternal ? "_blank" : undefined}
+                    rel={card.isExternal ? "noreferrer" : undefined}
+                    aria-label={card.actionLabel}
+                    className={`block rounded-2xl p-5 bg-[#0d0f17]/90 border border-white/10 ${card.borderAccent} hover:-translate-y-1 transition-all duration-300 shadow-lg group cursor-pointer relative overflow-hidden`}
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3.5">
-                        <div className={`p-3 rounded-xl bg-gradient-to-tr ${card.accent} border border-white/10 text-white`}>
-                          <Icon className="w-5 h-5 text-purple-200" />
+                      <div className="flex items-center gap-3.5 min-w-0">
+                        <div className={`p-3 rounded-xl bg-gradient-to-tr ${card.accent} border border-white/10 shrink-0 group-hover:scale-105 transition-transform`}>
+                          <Icon className="w-5 h-5" />
                         </div>
-                        <div>
-                          <h3 className="text-sm font-semibold text-white">
+                        <div className="min-w-0 pr-2">
+                          <h3 className="text-sm font-semibold text-white group-hover:text-purple-300 transition-colors">
                             {card.title}
                           </h3>
-                          <span className="text-xs text-slate-400 font-mono block truncate max-w-[180px]">
+                          <span className="text-xs text-slate-300 font-mono block truncate font-medium mt-0.5">
                             {card.value}
                           </span>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 shrink-0">
                         {card.canCopy && (
                           <button
                             type="button"
-                            onClick={handleCopyEmail}
-                            title="Copy Email"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleCopyEmail();
+                            }}
+                            title="Copy Email to Clipboard"
                             className="p-2 rounded-xl bg-white/[0.05] hover:bg-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer"
                           >
                             {copied ? (
@@ -146,18 +159,19 @@ export default function Contact() {
                           </button>
                         )}
 
-                        <a
-                          href={card.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="p-2 rounded-xl bg-purple-600/10 hover:bg-purple-600 text-purple-300 hover:text-white transition-all cursor-pointer"
+                        <div
+                          className="p-2 rounded-xl bg-purple-600/10 group-hover:bg-purple-600 text-purple-300 group-hover:text-white transition-all"
                           title={card.actionLabel}
                         >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
+                          {card.isExternal ? (
+                            <ExternalLink className="w-4 h-4" />
+                          ) : (
+                            <ArrowUpRight className="w-4 h-4" />
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 );
               })}
             </div>
@@ -169,7 +183,7 @@ export default function Contact() {
               Send a Direct Message
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mb-6">
-              Fill out the form below to initiate an email directly to Maria.
+              Write your note below to send an email directly to <span className="text-purple-300 font-mono">{contactInfo.email}</span>.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
